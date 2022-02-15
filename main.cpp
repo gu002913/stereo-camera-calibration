@@ -30,7 +30,7 @@ int main(int argc, char** argv){
     calibrate_stereo calibrateStereo;
     cv::Size boardSize;
     std::string imagelistfn;
-    std::string filePath = "/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/1/opencv_algo/raw/";
+    std::string filePath = "/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/20220208_4cm/opencv_algo/raw/";
     bool showRectified;
     cv::CommandLineParser parser(argc, argv, "{w|11|}{h|8|}{s|0.3|}{nr||}{help||}{@input|" + filePath + "stereo_calib.xml|}");
     if (parser.has("help"))
