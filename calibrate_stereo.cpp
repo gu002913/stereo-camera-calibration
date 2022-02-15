@@ -207,7 +207,7 @@ void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv
     std::cout << "average epipolar err = " <<  err/npoints << std::endl;
 
     // save intrinsic parameters
-    cv::FileStorage fs("/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/1/opencv_algo/result/intrinsics.yml", cv::FileStorage::WRITE);
+    cv::FileStorage fs("/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/20220208_4cm/opencv_algo/result/intrinsics.yml", cv::FileStorage::WRITE);
     if( fs.isOpened() )
     {
         fs << "M1" << cameraMatrix[0] << "D1" << distCoeffs[0] <<
@@ -225,7 +225,7 @@ void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv
                   imageSize, R, T, R1, R2, P1, P2, Q,
                   cv::CALIB_ZERO_DISPARITY, 1, imageSize, &validRoi[0], &validRoi[1]);
 
-    fs.open("/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/1/opencv_algo/result/extrinsics.yml", cv::FileStorage::WRITE);
+    fs.open("/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/20220208_4cm/opencv_algo/result/extrinsics.yml", cv::FileStorage::WRITE);
     if( fs.isOpened() )
     {
         fs << "R" << R << "T" << T << "R1" << R1 << "R2" << R2 << "P1" << P1 << "P2" << P2 << "Q" << Q;
