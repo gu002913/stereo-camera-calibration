@@ -1,0 +1,13 @@
+5cm_w_light smaller focal length
+
+The mean difference between two corners in mm is: 
+2.96732
+The mean error in (mm) is: 
+-0.0326817
+Plane Coefficient is: 
+A: -0.00571979
+B: 0.103121
+C: 15.4027
+Z value mean: 15.5088
+Z value std dev: 0.0695988
+Z value Error in ChinShine method: 0.208797

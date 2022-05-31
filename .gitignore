@@ -27,7 +27,8 @@
 *.out
 *.app
 
-.idea
-.DS_Store
+.idea/
+*.DS_Store
 cmake-build-debug/
-
+stereo_camera/
+data_analysis/
