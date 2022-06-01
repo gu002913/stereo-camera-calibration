@@ -31,19 +31,19 @@
  */
 
 
-calibrate_stereo::calibrate_stereo() {}
-calibrate_stereo::~calibrate_stereo() {}
+CalibrateStereo::CalibrateStereo() {}
+CalibrateStereo::~CalibrateStereo() {}
 
 
-int calibrate_stereo::CalibrationExecutable(int argc, char** argv) {
+int CalibrateStereo::CalibrationExecutable(int argc, char** argv) {
 
     cv::Size boardSize;
     std::string imagelistfn;
-    std::string filePath = "/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/20220216_dataset/5cm_w_light/raw/";
+    std::string filePath = "/Users/gudingyi/Desktop/stereo-camera-calibration/dataset/20220512/raw/";
     bool showRectified;
     cv::CommandLineParser parser(argc, argv, "{w|11|}{h|8|}{s|0.3|}{nr||}{help||}{@input|" + filePath + "stereo_calib.xml|}");
     if (parser.has("help"))
-        return print_help(argv);
+        return PrintHelp(argv);
     showRectified = !parser.has("nr");
     imagelistfn = cv::samples::findFile(parser.get<std::string>("@input"));
     boardSize.width = parser.get<int>("w");
@@ -55,11 +55,11 @@ int calibrate_stereo::CalibrationExecutable(int argc, char** argv) {
         return 1;
     }
     std::vector<std::string> imagelist;
-    bool ok = readStringList(imagelistfn, imagelist);
+    bool ok = ReadStringList(imagelistfn, imagelist);
     if(!ok || imagelist.empty())
     {
         std::cout << "can not open " << imagelistfn << " or the string list is empty" << std::endl;
-        return print_help(argv);
+        return PrintHelp(argv);
     }
 
     StereoCalib(imagelist, boardSize, squareSize, false, true, showRectified);
@@ -75,7 +75,7 @@ int calibrate_stereo::CalibrationExecutable(int argc, char** argv) {
 
 
 
-int calibrate_stereo::print_help(char **argv) {
+int CalibrateStereo::PrintHelp(char **argv) {
     std::cout <<
               " Given a list of chessboard images, the number of corners (nx, ny)\n"
               " on the chessboards, and a flag: useCalibrated for \n"
@@ -93,7 +93,7 @@ int calibrate_stereo::print_help(char **argv) {
 }
 
 
-void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv::Size boardSize, float squareSize,
+void CalibrateStereo::StereoCalib(const std::vector<std::string> &imagelist, cv::Size boardSize, float squareSize,
                                    bool displayCorners, bool useCalibrated, bool showRectified) {
     if( imagelist.size() % 2 != 0 )
     {
@@ -248,7 +248,7 @@ void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv
     std::cout << "average epipolar err = " <<  err/npoints << std::endl;
 
     // save intrinsic parameters
-    cv::FileStorage fs("/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/20220216_dataset/5cm_w_light/result/intrinsics.yml", cv::FileStorage::WRITE);
+    cv::FileStorage fs("/Users/gudingyi/Desktop/stereo-camera-calibration/dataset/20220512/result/intrinsics.yml", cv::FileStorage::WRITE);
     if( fs.isOpened() )
     {
         fs << "M1" << cameraMatrix[0] << "D1" << distCoeffs[0] <<
@@ -266,7 +266,7 @@ void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv
                   imageSize, R, T, R1, R2, P1, P2, Q,
                   cv::CALIB_ZERO_DISPARITY, 1, imageSize, &validRoi[0], &validRoi[1]);
 
-    fs.open("/Users/gudingyi/Desktop/stereo-camera-calibration/calib_data/20220216_dataset/5cm_w_light/result/extrinsics.yml", cv::FileStorage::WRITE);
+    fs.open("/Users/gudingyi/Desktop/stereo-camera-calibration/dataset/20220512/result/extrinsics.yml", cv::FileStorage::WRITE);
     if( fs.isOpened() )
     {
         fs << "R" << R << "T" << T << "R1" << R1 << "R2" << R2 << "P1" << P1 << "P2" << P2 << "Q" << Q;
@@ -365,7 +365,7 @@ void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv
 }
 
 
-bool calibrate_stereo::readStringList(const std::string &filename, std::vector<std::string> &l) {
+bool CalibrateStereo::ReadStringList(const std::string &filename, std::vector<std::string> &l) {
     l.resize(0);
     cv::FileStorage fs(filename, cv::FileStorage::READ);
     if( !fs.isOpened() )

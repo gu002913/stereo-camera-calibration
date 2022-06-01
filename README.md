@@ -8,7 +8,7 @@ This repository contains some sources to calibrate the intrinsics of individual 
 
 * OpenCV
 
-```js
+```shell
 % brew install opencv
 ```
 
@@ -16,7 +16,7 @@ This repository contains some sources to calibrate the intrinsics of individual 
 
 Compile all the files using the following commands.
 
-```js
+```shell
 % mkdir cmake-build-debug
 % cd cmake-build-debug
 % cmake ..
@@ -25,7 +25,7 @@ Compile all the files using the following commands.
 
 Make sure you are in the `cmake-build-debug` folder to run the exeutables.
 
-```js
+```shell
 % ./stereo-camera-calibration
 ```
 
@@ -44,7 +44,7 @@ Make sure you are in the `cmake-build-debug` folder to run the exeutables.
 
 input path in `main.cpp`:
 
-```js
+```cpp
 int main(int argc, char** argv){
 
     calibrate_stereo calibrateStereo;
@@ -60,7 +60,7 @@ return 0;
 
 output path in `calibrate_stereo.cpp`:
 
-```js
+```cpp
 void calibrate_stereo::StereoCalib(const std::vector<std::string> &imagelist, cv::Size boardSize, float squareSize,
                                    bool displayCorners, bool useCalibrated, bool showRectified) {
 ...

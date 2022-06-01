@@ -20,10 +20,11 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 set(SOURCES
         src/main.cpp
         src/calibrate_stereo.cpp
-
+        src/stereo_processing.cpp
         )
 set(HEADERS
         hpps/calibrate_stereo.h
+        hpps/stereo_processing.h
         )
 
 

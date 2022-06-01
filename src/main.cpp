@@ -13,9 +13,8 @@
 #include <iterator>
 
 
-
-
 #include "../hpps/calibrate_stereo.h"
+#include "../hpps/stereo_processing.h"
 
 
 /**
@@ -25,13 +24,25 @@
  * @stereo_calibration
  */
 
+
 int main(int argc, char** argv){
 
+    // Stereo Calibration ==============================================================================
+//    CalibrateStereo calibrateStereo;
+//    calibrateStereo.CalibrationExecutable(argc, argv);
+    // =================================================================================================
 
-    calibrate_stereo calibrateStereo;
-    calibrateStereo.CalibrationExecutable(argc, argv);
+
+    // Depth Analysis ==================================================================================
+    StereoProcessing stereoProcessing;
+    stereoProcessing.DepthEstimation();
+    // =================================================================================================
+
 
 
 
     return 0;
 }
+
+
+

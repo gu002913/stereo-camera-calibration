@@ -32,3 +32,4 @@
 cmake-build-debug/
 stereo_camera/
 data_analysis/
+calib_data/
